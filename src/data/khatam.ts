@@ -403,7 +403,7 @@ export const WORDS: Word[] = [
   { text: "الْحَمْدُ", start: 528.34, end: 529.92 },
 ];
 
-type SectionDef = { title: string; subtitle?: string; from: number };
+type SectionDef = { title: string; subtitle: string; from: number };
 
 const SECTION_DEFS: SectionDef[] = [
   { title: "سورۃ الحشر", subtitle: "Surah Al-Hashr", from: 0 },
@@ -419,7 +419,7 @@ const SECTION_DEFS: SectionDef[] = [
 
 export type Section = {
   title: string;
-  subtitle?: string;
+  subtitle: string;
   start: number;
   words: { word: Word; index: number }[];
 };
