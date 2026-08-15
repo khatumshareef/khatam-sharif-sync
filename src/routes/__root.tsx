@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Khatam Sharif — Interactive Quran Recitation" },
+      { name: "description", content: "Listen to Khatam Sharif with word-by-word live highlighting, tap any Arabic word to jump, adjust speed and follow along in a calm, elegant reader." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Khatam Sharif — Interactive Quran Recitation" },
+      { property: "og:description", content: "Listen to Khatam Sharif with word-by-word live highlighting, tap any Arabic word to jump, adjust speed and follow along in a calm, elegant reader." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Khatam Sharif — Interactive Quran Recitation" },
+      { name: "twitter:description", content: "Listen to Khatam Sharif with word-by-word live highlighting, tap any Arabic word to jump, adjust speed and follow along in a calm, elegant reader." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/2682a9d2-08d0-4722-aeb7-8faf01cd3543" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/2682a9d2-08d0-4722-aeb7-8faf01cd3543" },
     ],
     links: [
       {

@@ -14,7 +14,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Word-synced Khatam Sharif recitation with live highlighting, click-to-seek and full playback controls.",
+          "Listen to Khatam Sharif with word-by-word live highlighting, tap any Arabic word to jump, adjust speed and follow along in a calm, elegant reader.",
       },
     ],
   }),
