@@ -454,3 +454,29 @@ export function findWordIndexAt(time: number): number {
   }
   return found;
 }
+
+// Index of the last word of each ayah -> ayah number (null = no number, e.g. ta'awwuz / bismillah / dua)
+export const AYAH_ENDS: Record<number, number | null> = {
+  4: null, 8: null, 21: 22, 40: 23, 57: 24,
+  61: null, 64: 1, 67: 2, 71: 3,
+  75: null, 79: 1, 83: 2, 88: 3, 93: 4, 98: 5, 101: 6,
+  105: null, 109: 1, 111: 2, 115: 3, 120: 4,
+  124: null, 128: 1, 130: 2, 134: 3, 139: 4,
+  143: null, 147: 1, 149: 2, 153: 3, 158: 4,
+  162: null, 166: 1, 170: 2, 175: 3, 180: 4, 185: 5,
+  189: null, 193: 1, 195: 2, 197: 3, 201: 4, 206: 5, 209: 6,
+  213: 1, 217: 2, 219: 3, 222: 4, 226: 5, 229: 6, 237: 7,
+  241: null, 243: 1, 249: 2, 257: 3, 269: 4, 277: 5,
+  283: null, 288: null, 306: null, 320: null,
+  337: null, 354: null, 363: null, 371: null,
+  377: 180, 380: 181, 384: 182, 398: null,
+};
+
+const AR_DIGITS = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
+
+export function toArabicNumber(n: number): string {
+  return String(n)
+    .split("")
+    .map((d) => AR_DIGITS[Number(d)] ?? d)
+    .join("");
+}
