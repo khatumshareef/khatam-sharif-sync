@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Pause, Play, SkipBack, SkipForward, Upload, Volume2 } from "lucide-react";
-import audioAsset from "@/assets/khatm-sharif.m4a.asset.json";
-import logoAsset from "@/assets/logo.png.asset.json";
-import { SECTIONS, WORDS, findWordIndexAt } from "@/data/khatam";
+import { AYAH_ENDS, SECTIONS, WORDS, findWordIndexAt, toArabicNumber } from "@/data/khatam";
+
+const DEFAULT_AUDIO_URL = "/khatm-sharif.m4a";
+const LOGO_URL = "/logo.png";
 
 const SPEEDS = [0.5, 0.75, 1, 1.25, 1.5];
 
@@ -16,7 +17,7 @@ function formatTime(seconds: number) {
 export function KhatamPlayer() {
   const mediaRef = useRef<HTMLVideoElement>(null);
   const wordRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const [src, setSrc] = useState<string>(audioAsset.url);
+  const [src, setSrc] = useState<string>(DEFAULT_AUDIO_URL);
   const [isVideo, setIsVideo] = useState(false);
   const [fileName, setFileName] = useState("Khatam Sharif (default)");
   const [time, setTime] = useState(0);
@@ -99,7 +100,7 @@ export function KhatamPlayer() {
     <div className="min-h-screen pb-40">
       <header className="sticky top-0 z-20 border-b border-border bg-background/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-3 px-4 py-3">
-          <img src={logoAsset.url} alt="Khatam Sharif logo" className="size-12 shrink-0" />
+          <img src={LOGO_URL} alt="Khatam Sharif logo" className="size-12 shrink-0" />
           <div className="me-auto">
             <h1 className="text-lg font-semibold tracking-tight sm:text-xl">Khatam Sharif</h1>
             <p className="text-xs text-muted-foreground">Word-synced Quran recitation</p>
@@ -160,22 +161,34 @@ export function KhatamPlayer() {
               className="font-arabic text-3xl leading-[2.4] text-foreground sm:text-4xl sm:leading-[2.5]"
             >
               {section.words.map(({ word, index }) => (
-                <button
-                  key={index}
-                  ref={(el) => {
-                    wordRefs.current[index] = el;
-                  }}
-                  onClick={() => seek(word.start)}
-                  className={`word-chip ${
-                    index === highlighted
-                      ? "word-active"
-                      : index < highlighted
-                        ? "word-past"
-                        : ""
-                  }`}
-                >
-                  {word.text}
-                </button>
+                <span key={index}>
+                  <button
+                    ref={(el) => {
+                      wordRefs.current[index] = el;
+                    }}
+                    onClick={() => seek(word.start)}
+                    className={`word-chip ${
+                      index === highlighted
+                        ? "word-active"
+                        : index < highlighted
+                          ? "word-past"
+                          : ""
+                    }`}
+                  >
+                    {word.text}
+                  </button>
+                  {index in AYAH_ENDS && (
+                    <span className="ayah-end" aria-hidden="true">
+                      {AYAH_ENDS[index] != null ? (
+                        <span className="ayah-end-number">
+                          {toArabicNumber(AYAH_ENDS[index]!)}
+                        </span>
+                      ) : (
+                        "۝"
+                      )}
+                    </span>
+                  )}
+                </span>
               ))}
             </p>
           </section>
