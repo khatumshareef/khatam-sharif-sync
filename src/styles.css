@@ -134,3 +134,25 @@
   color: var(--muted-foreground);
 }
 
+@utility ayah-end {
+  display: inline-block;
+  margin: 0 0.15em;
+  color: var(--primary);
+  font-size: 0.9em;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+@utility ayah-end-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.9em;
+  height: 1.9em;
+  padding: 0 0.25em;
+  border: 1.5px solid var(--primary);
+  border-radius: 9999px;
+  background-color: var(--primary-soft);
+  font-size: 0.55em;
+  color: var(--primary);
+}
